@@ -1,15 +1,6 @@
 # at the top of your YAML file 
 # set some variables that you'll need when you deploy
-variables:
-  # the name of the service connection that you created above
-  serviceConnectionToAzure: connection
-  # the name of your web app here is the same one you used above
-  # when you created the web app using the Azure CLI
-  appName: my-app-name
-  # the name of your functionApp is what you provided as
-  # stagingDirectory in pom.xml
-  functionAppName: 'javafunctions'
-# ...
+
 
 # PHP
 # Test and package your PHP project.
@@ -24,6 +15,15 @@ pool:
 
 variables:
   phpVersion: 7.2
+
+  # the name of the service connection that you created above
+  serviceConnectionToAzure: connection
+  # the name of your web app here is the same one you used above
+  # when you created the web app using the Azure CLI
+  appName: my-app-name
+  # the name of your functionApp is what you provided as
+  # stagingDirectory in pom.xml
+  functionAppName: 'javafunctions'
 
 steps:
 - script: |
