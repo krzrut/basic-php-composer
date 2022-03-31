@@ -55,7 +55,7 @@ steps:
 - task: AzureWebApp@1
   displayName: Azure Web App Deploy
   inputs:
-    azureSubscription: $(serviceConnectionToAzure)
+    azureSubscription: 4cedc5dd-e3ad-468d-bf66-32e31bdb9148
     appType: webAppLinux
     appName: $(appName)
     package: $(build.artifactstagingdirectory)/**/*.zip
