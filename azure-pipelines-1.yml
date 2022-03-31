@@ -12,6 +12,15 @@ pool:
 variables:
   phpVersion: 7.2
 
+  # the name of the service connection that you created above
+  serviceConnectionToAzure: P1-Real Hands-On Labs(4cedc5dd-e3ad-468d-bf66-32e31bdb9148)
+  # the name of your web app here is the same one you used above
+  # when you created the web app using the Azure CLI
+  appName: my-app-name
+  # the name of your functionApp is what you provided as
+  # stagingDirectory in pom.xml
+  functionAppName: 'javafunctions'
+
 steps:
 - script: |
     sudo update-alternatives --set php /usr/bin/php$(phpVersion)
@@ -24,3 +33,23 @@ steps:
 
 - script: composer install --no-interaction --prefer-dist
   displayName: 'composer install'
+
+container:- task: ArchiveFiles@1
+  displayName: Archive files
+  inputs:
+    rootFolder: $(System.DefaultWorkingDirectory)
+    includeRootFolder: false
+    archiveType: zip
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifact
+  inputs:
+    PathtoPublish: $(build.artifactstagingdirectory)
+
+- task: AzureWebApp@1
+  displayName: Azure Web App Deploy
+  inputs:
+    azureSubscription: $(serviceConnectionToAzure)
+    appType: webAppLinux
+    appName: $(appName)
+    package: $(build.artifactstagingdirectory)/**/*.zip
