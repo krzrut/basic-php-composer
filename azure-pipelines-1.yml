@@ -13,7 +13,7 @@ variables:
   phpVersion: 7.2
 
   # the name of the service connection that you created above
-  serviceConnectionToAzure: "P1-Real Hands-On Labs(4cedc5dd-e3ad-468d-bf66-32e31bdb9148)"
+  serviceConnectionToAzure: "P1-Real Hands-On Labs(4cedc5dd-e3ad-468d-bf66-32e31bdb91482)"
   # the name of your web app here is the same one you used above
   # when you created the web app using the Azure CLI
   appName: my-app-name
